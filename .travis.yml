@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - '14'
+services:
+  - postgresql
+before_script:
+  - psql -c 'CREATE DATABASE jobly_test;' -U postgres
+  - psql -f jobly-schema.sql jobly_test
+install:
+  - npm install
+  - npm install --save-dev jest
+script:
+  - npm test
